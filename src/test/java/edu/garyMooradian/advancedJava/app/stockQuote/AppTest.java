@@ -1,4 +1,4 @@
-package edu.garyMooradian.advancedJava;
+package edu.garyMooradian.advancedJava.app.stockQuote;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
