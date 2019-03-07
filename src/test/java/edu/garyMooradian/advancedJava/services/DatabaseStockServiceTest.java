@@ -85,7 +85,7 @@ public class DatabaseStockServiceTest extends StockData {
 		 * Verify the stock symbol is correct for the stockQuote object
 		 * The symbol we sent is the symbol we expect to receive from the database; i.e. "GOOG"
 		 */
-		assertEquals("The stock symbol is not correct", symbol, quote.getSymbol());	
+		assertEquals("The stock symbol is not correct", symbol, quote.getSymbol());
 		
 	}
 	

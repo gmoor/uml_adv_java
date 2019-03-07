@@ -2,6 +2,7 @@ package edu.garyMooradian.advancedJava.app.stockQuote;
 
 import edu.garyMooradian.advancedJava.model.StockQuery;
 import edu.garyMooradian.advancedJava.model.StockQuote;
+import edu.garyMooradian.advancedJava.services.DatabaseStockService;
 import edu.garyMooradian.advancedJava.services.StockService;
 import edu.garyMooradian.advancedJava.services.StockServiceException;
 import edu.garyMooradian.advancedJava.services.StockServiceFactory;
@@ -175,7 +176,7 @@ public class StockQuoteApplication {
     	//The object will contain the enum constant, NORMAL
         ProgramTerminationStatusEnum exitStatus = ProgramTerminationStatusEnum.NORMAL;
         String programTerminationMessage = "Normal program termination.";
-
+        
         //This cannot generate an Exception so no try/catch required
         //Since we are hard coding the input right now, we'll comment out the following for now
         if (args.length != 4) {

@@ -11,12 +11,18 @@ import edu.garyMooradian.advancedJava.app.stockQuote.StockQuoteApplication;
 
 
 public class StockQuoteApplicationTest {
-
+	
+	/* IMPORTANT <<-------
+	 * Both test cases are no longer useful (for assignment 5) and are being
+	 * disabled. We'll require a new set of test cases for the methods in
+	 * StockApplicationClass
+	 */
+	
 	/*
 	 * This test should not cause an Exception.
 	 * If it does, the appropriate message will be generated
 	 */
-	@Test
+	//@Test
 	public void testMainPositive() {
 		String[] args = {"OLED", "1/20/2019", "1/30/2019"};
 		try {
@@ -32,13 +38,14 @@ public class StockQuoteApplicationTest {
 			assertTrue("Received an unexpected Exception",true);
 		}
 	}
+
 	
 	/*
 	 * This test should cause a NullPointerException
 	 */
-	@Test
+	//@Test //Test disabled: This test is no longer valid; i.e. main method has changed since assignment4
 	public void testMainNegative() {
-		
+		System.out.println("RUNNING testMainNegative");
 		try {
 			StockQuoteApplication.main(null);
 		} catch (Exception e) {
@@ -47,6 +54,7 @@ public class StockQuoteApplicationTest {
 		}
 		
 	}
+	
 	
 	
 

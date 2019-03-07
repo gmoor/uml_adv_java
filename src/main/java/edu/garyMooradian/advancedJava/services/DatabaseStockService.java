@@ -63,7 +63,7 @@ public class DatabaseStockService implements StockService {
              */
             ResultSet resultSet = preparedStatement.executeQuery();
             
-            
+            resultSet.last(); //set pointer to end of resultSet
             if(resultSet.getRow() == 0) {
             	throw new StockServiceException
                 	("There is no stock data for: " + symbol + " for the date " + date.getTime());

@@ -198,7 +198,7 @@ INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 10:00:01','
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 11:00:01','183');
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 12:00:01','184');
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 13:00:01','185');
-INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-01 14:00:01','186');
+INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 14:00:01','186');
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 15:00:01','187');
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-04 16:00:01','188');
 INSERT INTO quotes (symbol,time,price) VALUES (‘AAPL', '2019-01-05 09:00:01','189');
