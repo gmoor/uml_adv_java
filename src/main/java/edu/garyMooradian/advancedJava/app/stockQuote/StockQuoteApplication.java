@@ -110,7 +110,6 @@ public class StockQuoteApplication {
         		stockService.getQuoteHistory(stockQuery.getSymbol(), stockQuery.getFrom(), 
         				stockQuery.getUntil(), stockQuery.getInterval());
         
-
         stringBuilder.append("Stock quotes for: " + stockQuery.getSymbol() + "\n");
         /*
          * Get each StockQuote object from the ArrayList and append it's string representation
