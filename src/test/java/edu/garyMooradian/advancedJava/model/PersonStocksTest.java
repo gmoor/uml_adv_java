@@ -130,7 +130,6 @@ public class PersonStocksTest {
 		PersonStocks personStocks = new PersonStocks();
 		Person person = new Person();
 		
-		//Two instantiations of PersonStocks that contain different id values
 		assertFalse("The objects should not be equal but are", personStocks.equals(person));
 		
 	}
