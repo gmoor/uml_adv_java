@@ -1,6 +1,11 @@
 package edu.garyMooradian.advancedJava.utilities;
 
 import com.ibatis.common.jdbc.ScriptRunner;
+//import com.origamisoftware.teach.advanced.service.DatabaseActivitiesService;
+//import com.origamisoftware.teach.advanced.util.DatabaseConnectionException;
+//import com.origamisoftware.teach.advanced.util.DatabaseUtils;
+
+import edu.garyMooradian.advancedJava.services.DatabasePersonService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +14,11 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * A class that contains database related utility methods.
@@ -37,23 +47,77 @@ public class DatabaseUtils {
     private static final String USER = "monty";      //"root";
     private static final String PASS = "some_pass";  //"Cas9Edit7!";
     
+    private static SessionFactory sessionFactory;
+    private static Configuration configuration;
 
-    public static Connection getConnection() throws DatabaseConnectionException{
-        Connection connection = null;
-        try {
-        	/*
-        	 * forName is a static method in the class called Class
-        	 * We use it to load/register the Driver.
-        	 * Can generate a ClassNotFoundException
-        	 */
-        	Class.forName(JDBC_DRIVER);
+    
+    
+    /*
+     * @return SessionFactory for use with database transactions
+     */
+    public static SessionFactory getSessionFactory() {
+
+    	// singleton pattern
+    	synchronized (DatabasePersonService.class) {
+    		if (sessionFactory == null) {
+
+    			Configuration configuration = getConfiguration();
+
+    			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+                          .applySettings(configuration.getProperties())
+                          .buildServiceRegistry();
+
+    			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+            }
+        }
+        return sessionFactory;
+    }
+      
+      
+
+      /**
+       * Create a new or return an existing database configuration object.
+       *
+       * @return a Hibernate Configuration instance.
+       */
+      private static Configuration getConfiguration() {
+          synchronized (DatabaseUtils.class) {
+              if (configuration == null) {
+                  configuration = new Configuration();
+                  configuration.configure("hibernate.cfg.xml");
+              }
+          }
+          return configuration;
+      }
+    
+    
+      public static Connection getConnection() throws DatabaseConnectionException {
+    	  Configuration configuration = getConfiguration();//temporary
+    	  Connection connection = null;
+    	
+    	  try {
+    		  /*
+    		   * forName is a static method in the class called Class
+    		   * We use it to load/register the Driver.
+    		   * Can generate a ClassNotFoundException
+    		   */
+    		  Class.forName(JDBC_DRIVER);
         	
-        	/*
-        	 * Create the connection (Connection object) with this database and
-        	 * credentials; i.e. We are connected
-        	 * Can generate an SQLException
-        	 */
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+    		  /*
+    		   * See src/main/resources/hibernate.cfg.xml to understand the
+    		   * strings being passed to getProperty
+    		   */
+    		  String databaseUrl = configuration.getProperty("connection.url");
+    		  String username = configuration.getProperty("hibernate.connection.username");
+    		  String password = configuration.getProperty("hibernate.connection.password");       	
+    	
+    		  /*
+    		   * Create the connection (Connection object) with this database and
+    		   * credentials; i.e. We are connected
+    		   * Can generate an SQLException
+    		   */
+    		  connection = DriverManager.getConnection(databaseUrl, username, password);
             
         } catch (ClassNotFoundException | SQLException e)  {//either Exception is possible
         	/*
@@ -69,9 +133,9 @@ public class DatabaseUtils {
          * to the database.
          */
         return connection;//return the Connection object
+    	
     }
-    
-    
+
 
     /**
      * A utility method that runs a db initialize script.
@@ -91,9 +155,6 @@ public class DatabaseUtils {
             //Passing the connection
             ScriptRunner runner = new ScriptRunner(connection, false, false);
             
-            //I assume that the script is used to create the database if it was
-            //not created beforehand? NOTE: initializationScript is the variable pointing to the script file
-            //The script file was passes into our method
             InputStream inputStream = new  FileInputStream(initializationScript);
             InputStreamReader reader = new InputStreamReader(inputStream);
 

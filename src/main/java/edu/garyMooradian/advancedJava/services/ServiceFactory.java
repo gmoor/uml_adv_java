@@ -1,15 +1,18 @@
 package edu.garyMooradian.advancedJava.services;
 
+//Class originally called StockServiceFactory.
+//We renamed it to ServiceFactory for Assignment 6
+
 /**
  * A factory that returns a <CODE>StockService</CODE> instance.
  */
-public class StockServiceFactory {
+public class ServiceFactory {
 
     /**
      * Prevent instantiations; i.e. the default constructor is public
      * so we need to override it with a private constructor
      */
-    private StockServiceFactory() {}
+    private ServiceFactory() {}
        
     /*
 	 * We call this method getStockService because it returns any implementation
@@ -24,10 +27,20 @@ public class StockServiceFactory {
 	 * onus off the client, by using a configuration file. This method would read
 	 * the file and that would specify which StockService to return
 	 */
-	public static StockService getStockService() {
+	//public static StockService getStockService() {
+	//	return new DatabaseStockService();
+	//}
+	//This method replaces the above commented out method; i.e. the method name has been changed
+	public static StockService getStockServiceInstance() {
 		return new DatabaseStockService();
 	}
 
+	
+	//This is the new static method we added for this assignment
+	//DatabasePersonService contains the getPerson and get getStockSymbol methods
+	public static PersonService getPersonServiceInstance() {
+		return new DatabasePersonService();
+	}
     
 
 }

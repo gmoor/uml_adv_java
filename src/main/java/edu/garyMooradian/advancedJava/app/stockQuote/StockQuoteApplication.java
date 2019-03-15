@@ -5,7 +5,7 @@ import edu.garyMooradian.advancedJava.model.StockQuote;
 import edu.garyMooradian.advancedJava.services.DatabaseStockService;
 import edu.garyMooradian.advancedJava.services.StockService;
 import edu.garyMooradian.advancedJava.services.StockServiceException;
-import edu.garyMooradian.advancedJava.services.StockServiceFactory;
+import edu.garyMooradian.advancedJava.services.ServiceFactory;
 import edu.garyMooradian.advancedJava.utilities.DatabaseConnectionException;
 
 import java.sql.SQLException;
@@ -199,7 +199,7 @@ public class StockQuoteApplication {
             /*
              * Get the StockService (i.e. DatabaseStockService) from the StockServiceFactory
              */
-            StockService stockService = StockServiceFactory.getStockService();
+            StockService stockService = ServiceFactory.getStockServiceInstance();
 
             /*
              * Instantiate this class here (i.e. StockQuoteApplication), passing it the
