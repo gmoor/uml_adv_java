@@ -65,6 +65,7 @@ public class DatabaseStockServiceTest extends StockData {
 		 * we'll need to create a date object of the same date
 		 */
 		String expectedDate = "2019/01/01";
+
 		String actualDate = simpleDateFormat.format(quote.getDate());
 		
 		/*
@@ -507,7 +508,6 @@ public class DatabaseStockServiceTest extends StockData {
 			String symbol = "GOOG";
 			
 			IntervalEnum interval = IntervalEnum.DAILY;
-			
 			
 			/*
 			 * Pass both variables to the getQuote method. We should

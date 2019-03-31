@@ -1,4 +1,4 @@
-/** create the stocks database */
+/** create the stocks database. Used for Assignment 5 */
 
 DROP TABLE IF EXISTS quotes CASCADE;
 CREATE TABLE quotes(

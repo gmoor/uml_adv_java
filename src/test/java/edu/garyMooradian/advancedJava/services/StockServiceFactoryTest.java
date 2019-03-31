@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.garyMooradian.advancedJava.services.StockService;
-import edu.garyMooradian.advancedJava.services.StockServiceFactory;
+import edu.garyMooradian.advancedJava.services.ServiceFactory;
 import junit.framework.Assert;
 
 public class StockServiceFactoryTest {
@@ -18,7 +18,7 @@ public class StockServiceFactoryTest {
 	@Test
 	public void testGetStockService() {
 		//Call the method statically
-		StockService stockService = StockServiceFactory.getStockService();
+		StockService stockService = ServiceFactory.getStockServiceInstance();
 		assertNotNull("The object reference value is NULL", stockService);
 	}
 
